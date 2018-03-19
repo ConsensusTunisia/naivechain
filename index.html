@@ -1,0 +1,44 @@
+<head>
+  <style>
+    table {
+      border: 1px solid #333;
+      font-size: 13px;
+    }
+    table td {
+      border: 1px solid #333;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <br><h2>Add data:</h2>
+  <form action="addBlock" method="post">
+    <textarea name="data"></textarea>
+    <input type="submit" value="Add">
+  </form>
+  <br><h2>Peers:</h2>
+  <ul>
+    <% peers.forEach(function(peer) { %>
+      <li><%= peer %></li>
+    <% }); %>
+  </ul>
+  <br><h2>Blocks:</h2>
+  <table>
+    <tr>
+      <td>Index</td>
+      <td>Hash</td>
+      <td>Timestamp</td>
+      <td>Previous Hash</td>
+      <td>Data</td>
+    </tr>
+    <% blocks.forEach(function(block) { %>
+      <tr>
+        <td><%= block.index %></td>
+        <td><%= block.hash %></td>
+        <td><%= block.timestamp %></td>
+        <td><%= block.previousHash %></td>
+        <td><%= block.data %></td>
+      </tr>
+    <% }); %>
+  </table>
+</body>

@@ -3,7 +3,7 @@
 ### Motivation
 All the current implementations of blockchains are tightly coupled with the larger context and problems they (e.g. Bitcoin or Ethereum) are trying to solve. This makes understanding blockchains a necessarily harder task, than it must be. Especially source-code-wisely. This project is an attempt to provide as concise and simple implementation of a blockchain as possible.
 
- 
+
 ### What is blockchain
 [From Wikipedia](https://en.wikipedia.org/wiki/Blockchain_(database)) : Blockchain is a distributed database that maintains a continuously-growing list of records called blocks secured from tampering and revision.
 
@@ -25,20 +25,20 @@ Check also [this blog post](https://medium.com/@lhartikk/a-blockchain-in-200-lin
 For a more extensive tutorial about blockchains, you can check the project [Naivecoin](https://lhartikk.github.io/). It is based on Naivechain and implements for instance Proof-of-work, transactions and wallets.
 
 ### Quick start
-(set up two connected nodes and mine 1 block)
+(set up two connected nodes and add 1 block)
 ```
 npm install
-HTTP_PORT=3001 P2P_PORT=6001 npm start
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 npm start
-curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/mineBlock
+npm start 3001 6001
+npm start 3002 6002 ws://localhost:6001
+curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/addBlock
 ```
 
 ### Quick start with Docker
-(set up three connected nodes and mine a block)
+(set up three connected nodes and add a block)
 ###
 ```sh
 docker-compose up
-curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/mineBlock
+curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/addBlock
 ```
 
 ### HTTP API
@@ -48,8 +48,8 @@ curl http://localhost:3001/blocks
 ```
 ##### Create block
 ```
-curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/mineBlock
-``` 
+curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/addBlock
+```
 ##### Add peer
 ```
 curl -H "Content-type:application/json" --data '{"peer" : "ws://localhost:6001"}' http://localhost:3001/addPeer
