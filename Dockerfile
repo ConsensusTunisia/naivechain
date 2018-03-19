@@ -1,4 +1,4 @@
-FROM node:4.6
+FROM node:alpine
 
 RUN mkdir /naivechain
 ADD package.json /naivechain/

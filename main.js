@@ -8,6 +8,10 @@ var http_port = process.env.HTTP_PORT || 3001;
 var p2p_port = process.env.P2P_PORT || 6001;
 var initialPeers = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
+http_port = process.argv[2] ? process.argv[2] : http_port;
+p2p_port = process.argv[3] ? process.argv[3] : p2p_port;
+initialPeers = process.argv[4] ? process.argv[4].split(',') : initialPeers;
+
 class Block {
     constructor(index, previousHash, timestamp, data, hash) {
         this.index = index;
@@ -50,12 +54,12 @@ var initHttpServer = () => {
         connectToPeers([req.body.peer]);
         res.send();
     });
-    app.listen(http_port, () => console.log('Listening http on port: ' + http_port));
+    app.listen(http_port, 'localhost', () => console.log('Listening http on port: ' + http_port));
 };
 
 
 var initP2PServer = () => {
-    var server = new WebSocket.Server({port: p2p_port});
+    var server = new WebSocket.Server({port: p2p_port, host: 'localhost'});
     server.on('connection', ws => initConnection(ws));
     console.log('listening websocket p2p port on: ' + p2p_port);
 
