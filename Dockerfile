@@ -2,9 +2,10 @@ FROM node:alpine
 
 RUN mkdir /naivechain
 ADD package.json /naivechain/
-ADD main.js /naivechain/
-
 RUN cd /naivechain && npm install
+
+ADD main.js /naivechain/
+ADD index.html /naivechain/
 
 EXPOSE 3001
 EXPOSE 6001
