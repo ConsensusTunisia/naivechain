@@ -29,4 +29,4 @@ services:
     ports:
     - "3003:3001"
     links:
-      - node2:node2
+      - node1:node1
